@@ -15,7 +15,7 @@
         let generation = [];
         let timer;
         let isRunning = false;
-        let isPlayingMusic = false;
+        let isPlayingMusic = true;
 
         const drawPixel = (x, y, color) => {
             ctx.fillStyle = color;
@@ -187,10 +187,12 @@
 
         /* ===INIT=== */        
         //canvas size calculation
-        canvas.width = (70 / 100) * window.innerWidth; //70%
-        canvas.height = (50 / 100) * window.innerHeight; //50%
-        canvas.width += 10 - (canvas.width % 10); //rounding
-        canvas.height += 10 - (canvas.height % 10); //rounding
+        // canvas.width = (70 / 100) * window.innerWidth; //70%
+        // canvas.height = (50 / 100) * window.innerHeight; //50%
+        // canvas.width += 10 - (canvas.width % 10); //rounding
+        // canvas.height += 10 - (canvas.height % 10); //rounding
+        canvas.width = 800;
+        canvas.height = 400;
         console.log(canvas.width, canvas.height);
 
         //canvas size setting
