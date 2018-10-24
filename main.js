@@ -2,13 +2,14 @@
     document.addEventListener('DOMContentLoaded', (e) => {
         console.log("DOM fully loaded and parsed");
         const canvas = document.querySelector('.canvas');
-        canvas.width = (50 / 100) * window.innerWidth;
-        canvas.height = (50 / 100) * window.innerHeight;
         const ctx = canvas.getContext('2d');
         const buttons = document.querySelectorAll('.btn-section__btn');
         const buttonRun = buttons[0];
         const buttonPause = buttons[1];
         const buttonClear = buttons[2];
+        const inputSpeed = document.querySelector('.speed-range__input');
+        const labelSpeed = document.querySelector('.speed-range__label');
+        let speed = 1000;
         let generation = [];
         let timer;
         let isRunning = false;
@@ -114,33 +115,75 @@
             }
         });
 
-        buttonClear.addEventListener('click', () => {
-            pause();
-            clearField();
-            isRunning = false;
-            //console.log('Cleared', isRunning);
-        });
 
-        buttonRun.addEventListener('click', () => {
+        buttonRun.addEventListener('click', (e) => {
+            buttons.forEach((item) => {
+                item.classList.remove('btn-section__btn_active');
+            });
+            e.target.classList.add('btn-section__btn_active');
+            e.target.innerHTML = 'Running';
+            buttonPause.innerHTML = 'Pause';
+
             if (isRunning == false) {
                 isRunning = true;
-                timer = setInterval(run, 500);
+                timer = setInterval(run, speed);
                 //console.log('Run', isRunning);
             } else {
                 //console.log('Already running', isRunning);
             }
         });
 
-        buttonPause.addEventListener('click', () => {
+        buttonPause.addEventListener('click', (e) => {
+            buttons.forEach((item) => {
+                item.classList.remove('btn-section__btn_active');
+            });
+            e.target.classList.add('btn-section__btn_active');
+            e.target.innerHTML = 'Paused';
+            buttonRun.innerHTML = 'Run';
+
             pause();
             isRunning = false;
             //console.log('Paused', isRunning);
         });
 
-        //INIT========
+        buttonClear.addEventListener('click', (e) => {
+            buttonPause.click();
+            clearField();
+            isRunning = false;
+            //console.log('Cleared', isRunning);
+        });
+
+        inputSpeed.addEventListener('input', (e) => {
+            speed = Math.abs(e.target.value);
+            //console.log(`Speed = ${speed}ms`);
+            labelSpeed.innerHTML = `Speed: ${speed/1000}s`;
+
+            if (isRunning == true) {
+                pause();
+                timer = setInterval(run, speed);
+            }
+        });
+
+
+        /* ===INIT=== */        
+        //canvas size calculation
+        canvas.width = (70 / 100) * window.innerWidth; //70%
+        canvas.height = (50 / 100) * window.innerHeight; //50%
+        canvas.width += 10 - (canvas.width % 10); //rounding
+        canvas.height += 10 - (canvas.height % 10); //rounding
+        console.log(canvas.width, canvas.height);
+
+        //canvas size setting
         canvas.setAttribute('width', canvas.width);
         canvas.setAttribute('height', canvas.height);
 
-        clearField();
+        //control panel size setting
+        const container = document.querySelector('.container');
+        container.style.width = `${canvas.width}px`;
+
+        //speed init
+        labelSpeed.innerHTML = `Speed: ${speed/1000}s`;
+
+        buttonClear.click();
     })
 })();

@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+*:focus {
+  outline: none;
+}
+
 .header {
   font: 32px "Century Gothic", Futura, sans-serif;
   margin: 10px 30px;
@@ -15,6 +19,81 @@
 .desc {
   font: 16px "Century Gothic", Futura, sans-serif;
   margin: 10px 30px 20px 30px;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+}
+
+.speed-range {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 20px;
+}
+
+.speed-range__label {
+  font-weight: 600;
+  display: block;
+  margin: 0 10px;
+}
+
+.speed-range__input {
+  margin: 0 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.speed-range__input::-webkit-slider-runnable-track {
+  margin-top: 10px;
+  width: 100%;
+  height: 2px;
+  background: black;
+}
+
+.speed-range__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -10px;
+  border: 3px solid black;
+  height: 22px;
+  width: 14px;
+  background: white;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.speed-range__input::-webkit-slider-thumb:hover {
+  background: black;
+}
+
+.speed-range__input::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  background: black;
+}
+
+.speed-range__input::-moz-range-thumb {
+  border: 3px solid black;
+  border-radius: 0;
+  height: 14px;
+  width: 10px;
+  background: white;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.speed-range__input::-moz-range-thumb:hover {
+  background: black;
 }
 
 .btn-section {
@@ -34,11 +113,17 @@
   background: transparent;
   border: 3px solid black;
   margin: 0 10px;
+  cursor: pointer;
   -webkit-transition: 500ms all;
   transition: 500ms all;
 }
 
 .btn-section__btn:hover {
+  background: black;
+  color: white;
+}
+
+.btn-section__btn_active {
   background: black;
   color: white;
 }
