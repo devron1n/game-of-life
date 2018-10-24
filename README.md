@@ -1,2 +1,2 @@
 # game-of-life
-My "Game of Life" realization, developed using Canvas and Vanilla JS
+My "Game of Life" realization, developed using Canvas, Scss and Vanilla JS
