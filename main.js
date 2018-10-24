@@ -107,7 +107,7 @@
                     generation[x][y] = false;
                 }
             } else {
-                alert('Вы не можете рисовать когда игра запущена');
+                alert('Вы не можете рисовать, когда игра запущена');
                 //console.log('Drawing is blocked while running');
             }
         });

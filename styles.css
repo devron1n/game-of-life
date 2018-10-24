@@ -9,7 +9,12 @@
 
 .header {
   font: 32px "Century Gothic", Futura, sans-serif;
-  margin: 30px;
+  margin: 10px 30px;
+}
+
+.desc {
+  font: 16px "Century Gothic", Futura, sans-serif;
+  margin: 10px 30px;
 }
 
 .btn-section {
@@ -37,4 +42,4 @@
   background: black;
   color: white;
 }
-/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=styles.css.map */
