@@ -7,12 +7,15 @@
         const buttonRun = buttons[0];
         const buttonPause = buttons[1];
         const buttonClear = buttons[2];
+        const buttonAudio = document.querySelector('.btn-audio-section__btn');
         const inputSpeed = document.querySelector('.speed-range__input');
         const labelSpeed = document.querySelector('.speed-range__label');
-        let speed = 1000;
+        const audio = document.querySelector('.audio');
+        let speed = 100;
         let generation = [];
         let timer;
         let isRunning = false;
+        let isPlayingMusic = false;
 
         const drawPixel = (x, y, color) => {
             ctx.fillStyle = color;
@@ -123,6 +126,7 @@
             e.target.classList.add('btn-section__btn_active');
             e.target.innerHTML = 'Running';
             buttonPause.innerHTML = 'Pause';
+            audio.play();
 
             if (isRunning == false) {
                 isRunning = true;
@@ -140,6 +144,7 @@
             e.target.classList.add('btn-section__btn_active');
             e.target.innerHTML = 'Paused';
             buttonRun.innerHTML = 'Run';
+            audio.pause();
 
             pause();
             isRunning = false;
@@ -147,6 +152,7 @@
         });
 
         buttonClear.addEventListener('click', (e) => {
+            audio.currentTime = 0;
             buttonPause.click();
             clearField();
             isRunning = false;
@@ -161,6 +167,20 @@
             if (isRunning == true) {
                 pause();
                 timer = setInterval(run, speed);
+            }
+        });
+
+        buttonAudio.addEventListener('click', (e) => {
+            if (isPlayingMusic == false){
+                audio.volume = 1;
+                e.target.innerHTML = 'Sound: ON';
+                e.target.classList.add('btn-audio-section__btn_active');
+                isPlayingMusic = true;
+            } else {
+                audio.volume = 0;
+                e.target.innerHTML = 'Sound: OFF';
+                e.target.classList.remove('btn-audio-section__btn_active');
+                isPlayingMusic = false;
             }
         });
 
@@ -185,5 +205,7 @@
         labelSpeed.innerHTML = `Speed: ${speed/1000}s`;
 
         buttonClear.click();
+        buttonAudio.click();
+        inputSpeed.setAttribute('value', 100);
     })
 })();
