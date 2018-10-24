@@ -106,15 +106,6 @@
   margin: 20px;
 }
 
-@media screen and (max-width: 1200px) {
-  .btn-section {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-
 .btn-section__btn {
   font-weight: 600;
   padding: 10px;
