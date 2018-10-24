@@ -3,9 +3,8 @@
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
-    margin: 0 auto;
     text-align: center;
-    border: 1px solid pink;
+    //border: 1px solid pink;
 
     &:focus {
         outline: none;
@@ -13,9 +12,8 @@
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 1360px;
+    margin: 0 auto;
 }
 
 .header {
@@ -31,7 +29,7 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    //margin: 0 auto;
 }
 
 .speed-range {
