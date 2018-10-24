@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.header {
+    font: 32px "Century Gothic", Futura, sans-serif;
+    margin: 30px;
+}
+
+.btn-section {
+    display: flex;  
+    justify-content: center;
+    margin: 20px;
+}
+
+.btn-section__btn {
+    font-weight: 600;
+    padding: 10px;
+    width: 100px;
+    background: transparent;
+    border: 3px solid black;
+    margin: 0 10px;
+    transition: 500ms all;
+
+    &:hover {
+        background: black;
+        color: white;
+    }
+}
+
+.canvas {
+    //background-color: black;
+}
+
