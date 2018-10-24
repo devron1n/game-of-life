@@ -2,8 +2,8 @@
     document.addEventListener('DOMContentLoaded', (e) => {
         console.log("DOM fully loaded and parsed");
         const canvas = document.querySelector('.canvas');
-        canvas.width = canvas.getAttribute('width');
-        canvas.height = canvas.getAttribute('height');
+        canvas.width = (50 / 100) * window.innerWidth;
+        canvas.height = (50 / 100) * window.innerHeight;
         const ctx = canvas.getContext('2d');
         const buttons = document.querySelectorAll('.btn-section__btn');
         const buttonRun = buttons[0];
@@ -43,10 +43,12 @@
                     for(let n = i - 1; n <= i + 1; n++) {
                         for(let m = j - 1; m <= j + 1; m++) {
                             if (n == i && m == j) continue;
-                            nTor = (n + generation.length) % generation.length;
-                            mTor = (m + generation[i].length) % generation[i].length;
 
-                            if (generation[nTor][mTor] == true) {
+                            //torus surface
+                            let x = (n + generation.length) % generation.length;
+                            let y = (m + generation[i].length) % generation[i].length;
+
+                            if (generation[x][y] == true) {
                                     neighborsAlive++;
                             }
                         }
@@ -85,7 +87,7 @@
                     }
                 }
             }
-            console.log('Showed new generation');
+            //console.log('Showed new generation');
         };
 
         const pause = () => {
@@ -116,27 +118,29 @@
             pause();
             clearField();
             isRunning = false;
-            console.log('Cleared', isRunning);
+            //console.log('Cleared', isRunning);
         });
 
         buttonRun.addEventListener('click', () => {
             if (isRunning == false) {
                 isRunning = true;
-                //let evoSpeed = prompt('Введите скорость эволюции(ms)', 1000);
                 timer = setInterval(run, 500);
-                console.log('Run', isRunning);
+                //console.log('Run', isRunning);
             } else {
-                console.log('Already running', isRunning);
+                //console.log('Already running', isRunning);
             }
         });
 
         buttonPause.addEventListener('click', () => {
             pause();
             isRunning = false;
-            console.log('Paused', isRunning);
+            //console.log('Paused', isRunning);
         });
 
         //INIT========
+        canvas.setAttribute('width', canvas.width);
+        canvas.setAttribute('height', canvas.height);
+
         clearField();
     })
 })();
