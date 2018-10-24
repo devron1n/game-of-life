@@ -3,12 +3,19 @@
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
+    margin: 0 auto;
     text-align: center;
-    //border: 1px solid pink;
+    border: 1px solid pink;
 
     &:focus {
         outline: none;
     }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
