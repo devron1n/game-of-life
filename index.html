@@ -8,13 +8,15 @@
     <title>Game of Life</title>
 </head>
 <body>
-    <h1 class='header'>Создай новую жизнь</h1>
-    <p class='desc'>Кликая мышкой по холсту - нарисуйте вашу первую молекулу.<br>Нажмите 'Run' и наблюдайте за развитием новой жизни!</p>
+    <header class='header'>
+        <h1 class='header__text'>Создай новую жизнь</h1>
+        <p class='header__desc'>Кликая мышкой по холсту - нарисуйте вашу первую молекулу.<br>Нажмите 'Run' и наблюдайте за развитием новой жизни!</p>        
+    </header>
     <canvas class='canvas'></canvas>
     <div class="container">
         <div class='speed-range'>
             <label class='speed-range__label' for='speed-range'></label>
-            <input type='range' class='speed-range__input' name='speed-range' min='-2000' max='100' step='100'/>
+            <input type='range' class='speed-range__input' name='speed-range' min='-2000' max='-100' step='100'/>
         </div>
         <div class='btn-section'>
             <button class='btn-section__btn'>Run</button>
@@ -22,7 +24,7 @@
             <button class='btn-section__btn'>Clear</button>
         </div>
         <div class='btn-audio-section'>
-            <button class='btn-audio-section__btn'></button>
+            <button class='btn-audio-section__btn'>Music</button>
         </div>
     </div>
     <audio class='audio' src="src/1200mcs.mp3" loop></audio>

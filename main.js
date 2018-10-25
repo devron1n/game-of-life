@@ -173,12 +173,12 @@
         buttonAudio.addEventListener('click', (e) => {
             if (isPlayingMusic == false){
                 audio.volume = 1;
-                e.target.innerHTML = 'Sound: ON';
+                //e.target.innerHTML = 'Sound: ON';
                 e.target.classList.add('btn-audio-section__btn_active');
                 isPlayingMusic = true;
             } else {
                 audio.volume = 0;
-                e.target.innerHTML = 'Sound: OFF';
+                //e.target.innerHTML = 'Sound: OFF';
                 e.target.classList.remove('btn-audio-section__btn_active');
                 isPlayingMusic = false;
             }
@@ -187,13 +187,18 @@
 
         /* ===INIT=== */        
         //canvas size calculation
-        // canvas.width = (70 / 100) * window.innerWidth; //70%
-        // canvas.height = (50 / 100) * window.innerHeight; //50%
-        // canvas.width += 10 - (canvas.width % 10); //rounding
-        // canvas.height += 10 - (canvas.height % 10); //rounding
-        canvas.width = 800;
-        canvas.height = 400;
-        console.log(canvas.width, canvas.height);
+        console.log('Window size =', window.innerWidth, window.innerHeight);
+        //responsive canvas width
+        if (window.innerWidth <= 768) {
+            canvas.width = window.innerWidth; //100%
+            canvas.width -= canvas.width % 10; //rounding
+        } else {
+            canvas.width = (70 / 100) * window.innerWidth; //70%
+            canvas.width += 10 - (canvas.width % 10); //rounding
+        }
+        canvas.height = (50 / 100) * window.innerHeight; //50%
+        canvas.height += 10 - (canvas.height % 10); //rounding
+        console.log('Canvas size =', canvas.width, canvas.height);
 
         //canvas size setting
         canvas.setAttribute('width', canvas.width);
@@ -202,6 +207,8 @@
         //control panel size setting
         const container = document.querySelector('.container');
         container.style.width = `${canvas.width}px`;
+        const header = document.querySelector('.header');
+        header.style.width = `${canvas.width}px`;
 
         //speed init
         labelSpeed.innerHTML = `Speed: ${speed/1000}s`;

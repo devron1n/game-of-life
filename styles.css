@@ -12,11 +12,15 @@
 }
 
 .header {
+  margin: 0 auto;
+}
+
+.header__text {
   font: 32px "Century Gothic", Futura, sans-serif;
   margin: 10px 30px;
 }
 
-.desc {
+.header__desc {
   font: 16px "Century Gothic", Futura, sans-serif;
   margin: 10px 30px 20px 30px;
 }
@@ -29,6 +33,15 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .speed-range {
@@ -141,7 +154,7 @@
 .btn-audio-section__btn {
   font-weight: 600;
   padding: 10px;
-  width: 150px;
+  width: 100px;
   background: transparent;
   border: 3px solid black;
   margin: 0 10px;
