@@ -3,6 +3,8 @@
         console.log("DOM fully loaded and parsed");
         const canvas = document.querySelector('.canvas');
         const ctx = canvas.getContext('2d');
+        const container = document.querySelector('.container');
+        const header = document.querySelector('.header');
         const buttons = document.querySelectorAll('.btn-section__btn');
         const buttonRun = buttons[0];
         const buttonPause = buttons[1];
@@ -16,6 +18,27 @@
         let timer;
         let isRunning = false;
         let isPlayingMusic = true;
+
+        //responsive canvas size calculation
+        const responsiveCanvas = () => {
+            //console.log('Window size =', window.innerWidth, window.innerHeight);
+            if (window.innerWidth <= 768) {
+                canvas.width = window.innerWidth; //100%
+                canvas.width -= canvas.width % 10; //rounding
+            } else {
+                canvas.width = (70 / 100) * window.innerWidth; //70%
+                canvas.width += 10 - (canvas.width % 10); //rounding
+            }
+
+            canvas.height = (50 / 100) * window.innerHeight; //50%
+            canvas.height += 10 - (canvas.height % 10); //rounding
+            //console.log('Canvas size =', canvas.width, canvas.height);
+
+            let width = canvas.width;
+            let height = canvas.height;
+
+            return {width, height};
+        };
 
         const drawPixel = (x, y, color) => {
             ctx.fillStyle = color;
@@ -186,35 +209,24 @@
 
 
         /* ===INIT=== */        
-        //canvas size calculation
-        console.log('Window size =', window.innerWidth, window.innerHeight);
-        //responsive canvas width
-        if (window.innerWidth <= 768) {
-            canvas.width = window.innerWidth; //100%
-            canvas.width -= canvas.width % 10; //rounding
-        } else {
-            canvas.width = (70 / 100) * window.innerWidth; //70%
-            canvas.width += 10 - (canvas.width % 10); //rounding
-        }
-        canvas.height = (50 / 100) * window.innerHeight; //50%
-        canvas.height += 10 - (canvas.height % 10); //rounding
-        console.log('Canvas size =', canvas.width, canvas.height);
+        (() => {
+            let width = responsiveCanvas().width;
+            let height = responsiveCanvas().height;
+            //console.log('Responsive canvas size =', responsiveCanvas().width, responsiveCanvas().height);
 
-        //canvas size setting
-        canvas.setAttribute('width', canvas.width);
-        canvas.setAttribute('height', canvas.height);
+            //DOM elements size setting
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            container.style.width = `${width}px`;
+            header.style.width = `${width}px`;
+    
+            //speed initial setting
+            inputSpeed.setAttribute('value', 100);
+            labelSpeed.innerHTML = `Speed: ${speed/1000}s`;
+    
+            buttonClear.click();
+            buttonAudio.click();
+        })();
 
-        //control panel size setting
-        const container = document.querySelector('.container');
-        container.style.width = `${canvas.width}px`;
-        const header = document.querySelector('.header');
-        header.style.width = `${canvas.width}px`;
-
-        //speed init
-        labelSpeed.innerHTML = `Speed: ${speed/1000}s`;
-
-        buttonClear.click();
-        buttonAudio.click();
-        inputSpeed.setAttribute('value', 100);
-    })
+    });
 })();
